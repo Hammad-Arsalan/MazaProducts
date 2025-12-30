@@ -406,14 +406,11 @@
             <section id="hero" class="content-section flex items-center justify-center py-20 lg:py-28 in-view">
                 <!-- 🔽 ADDED: Background Slides -->
             <div class="hero-bg absolute inset-0 -z-10">
-                <div class="bg-slide active" style="background-image:url('images/BackgroundImage.png')"></div>
-                <div class="bg-slide active" style="background-image:url('images/GaramMasala.png')"></div>
-                <div class="bg-slide active" style="background-image:url('images/BlackPepper.png')"></div>
-                <div class="bg-slide active" style="background-image:url('images/TurmericPowder.jpg')"></div>
-                <div class="bg-slide active" style="background-image:url('images/Chicken65.png')"></div>
-                <div class="bg-slide active" style="background-image:url('images/GreenChicken.png')"></div>
-                <div class="bg-slide active" style="background-image:url('images/RedChili1.png')"></div>
-                
+                  <div class="bg-slide active" style="background-image:url('images/BackgroundImage.png')"></div>
+        <div class="bg-slide active" style="background-image:url('images/BlackPepper.png')"></div>
+        <div class="bg-slide active" style="background-image:url('images/Chicken65.png')"></div>
+        <div class="bg-slide active" style="background-image:url('images/GreenChicken.png')"></div>
+        <div class="bg-slide active" style="background-image:url('images/RedChili1.png')"></div>
             </div>
                 <!-- 🔼 END ADDED CODE -->
                 <div class="px-6 py-16 md:p-20 max-w-6xl mx-auto text-center relative z-10">
@@ -865,15 +862,24 @@
     <!-- END APPLICATION CONTENT WRAPPER -->
     
     <script>
+        
     // -- hero bg slider
-  const slides = document.querySelectorAll(".bg-slide");
-  let currentSlide = 0;
+    const slides = document.querySelectorAll(".bg-slide");
+let currentSlide = 0;
 
-  setInterval(() => {
-    slides[currentSlide].classList.remove("active");
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
-  }, 4000);
+// Make sure the first slide is active
+slides[currentSlide].classList.add("active");
+
+// Function to switch slides
+function nextSlide() {
+  slides[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add("active");
+}
+
+// Start slideshow with a regular interval (every 3 seconds)
+setInterval(nextSlide, 3000);
+
         
         // --- SVG Icons for Theme Toggle (Simplified Lucide SVG) ---
         const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.44 1.44"/><path d="m17.67 17.67 1.44 1.44"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.44 1.44"/><path d="m19.07 4.93-1.44 1.44"/></svg>`;
@@ -1208,6 +1214,7 @@ contactForm.addEventListener('submit', (e) => {
 </body>
 
 </html>
+
 
 
 
