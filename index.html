@@ -227,19 +227,12 @@
             border-bottom: 1px solid rgba(212, 175, 55, 0.5);
             transition: background-color 0.5s ease, border-bottom 0.5s ease; /* Theme transition */
         }
-        .hero-bg {
-    background-image:
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url("images/BackgroundImage.png");
-}
+        
 @media (max-width: 768px) {
     .hero-bg {
-        background-attachment: fixed;
     }
 }
-
-
-        
+       
         /* Ensure primary text colors respect the theme */
         .text-white { color: var(--text-primary-color); }
         .text-dark-velvet { color: var(--bg-color); }
@@ -297,15 +290,39 @@
 }
 
 #hero {
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("images/BackgroundImage.png");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.299), rgba(7, 7, 7, 0.31));
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
         }
         #theme-toggle-button{
             margin-left: 4rem;
         }
+
+        .hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.bg-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.bg-slide.active {
+  opacity: 1;
+}
  @media screen and (max-width: 600px) {
     #Phoneview{
         font-size: 20px;
@@ -387,6 +404,17 @@
         <main>
             <!-- Hero Section (Padding reduced to py-20 lg:py-28) -->
             <section id="hero" class="content-section flex items-center justify-center py-20 lg:py-28 in-view">
+                <!-- 🔽 ADDED: Background Slides -->
+            <div class="hero-bg absolute inset-0 -z-10">
+                <div class="bg-slide active" style="background-image:url('images/BackgroundImage.png')"></div>
+                <div class="bg-slide active" style="background-image:url('images/GaramMasala.png')"></div>
+                <div class="bg-slide active" style="background-image:url('images/BlackPepper.png')"></div>
+                <div class="bg-slide active" style="background-image:url('images/Chicken65.png')"></div>
+                <div class="bg-slide active" style="background-image:url('images/GreenChicken.png')"></div>
+                <div class="bg-slide active" style="background-image:url('images/RedChili1.png')"></div>
+                <div class="bg-slide active" style="background-image:url('images/TurmericPowder.jpg')"></div>
+            </div>
+                <!-- 🔼 END ADDED CODE -->
                 <div class="px-6 py-16 md:p-20 max-w-6xl mx-auto text-center relative z-10">
                     <div>
                         <p class="text-xl sm:text-2xl text-accent-gold-rich mb-4 uppercase tracking-widest font-semibold">
@@ -836,6 +864,16 @@
     <!-- END APPLICATION CONTENT WRAPPER -->
     
     <script>
+    // -- hero bg slider
+  const slides = document.querySelectorAll(".bg-slide");
+  let currentSlide = 0;
+
+  setInterval(() => {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add("active");
+  }, 2000);
+        
         // --- SVG Icons for Theme Toggle (Simplified Lucide SVG) ---
         const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.44 1.44"/><path d="m17.67 17.67 1.44 1.44"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.44 1.44"/><path d="m19.07 4.93-1.44 1.44"/></svg>`;
         const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
@@ -1169,6 +1207,7 @@ contactForm.addEventListener('submit', (e) => {
 </body>
 
 </html>
+
 
 
 
